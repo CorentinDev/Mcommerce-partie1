@@ -89,7 +89,7 @@ public class ProductController {
     @DeleteMapping (value = "/Produits/{id}")
     public void supprimerProduit(@PathVariable int id) {
 
-        productDao.delete(id);
+        productDao.deleteById(id);
     }
 
     @PutMapping (value = "/Produits")
@@ -118,6 +118,12 @@ public class ProductController {
             response.put(product.toString(), marge);
         }
         return response;
+    }
+
+    // Partie 2 - Tri par ordre alphabétique
+    @GetMapping(value = "/ProduitsAlphabetiquementTries")
+    public List<Product>  trierProduitsParOrdreAlphabetique() {
+        return productDao.findAllByOrderByNomAsc();
     }
 
 }
